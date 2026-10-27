@@ -1,0 +1,36 @@
+CREATE DATABASE IF NOT EXISTS db_piketguru CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE db_piketguru;
+CREATE TABLE IF NOT EXISTS guru (
+ id INT AUTO_INCREMENT PRIMARY KEY, nip VARCHAR(30) UNIQUE, nama VARCHAR(120) NOT NULL,
+ mapel VARCHAR(100), no_hp VARCHAR(25), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS user (
+ id INT AUTO_INCREMENT PRIMARY KEY, guru_id INT NULL, nama VARCHAR(120) NOT NULL,
+ username VARCHAR(60) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL,
+ role ENUM('admin','guru') NOT NULL DEFAULT 'guru',
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (guru_id) REFERENCES guru(id) ON DELETE SET NULL
+);
+CREATE TABLE IF NOT EXISTS jadwal_piket (
+ id INT AUTO_INCREMENT PRIMARY KEY, guru_id INT NOT NULL,
+ hari ENUM('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu') NOT NULL,
+ jam_mulai TIME NOT NULL, jam_selesai TIME NOT NULL, keterangan VARCHAR(255),
+ FOREIGN KEY (guru_id) REFERENCES guru(id) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS absensi_piket (
+ id INT AUTO_INCREMENT PRIMARY KEY, guru_id INT NOT NULL, tanggal DATE NOT NULL,
+ status ENUM('Hadir','Izin','Sakit','Alpa') NOT NULL, keterangan TEXT,
+ UNIQUE KEY unik_absensi (guru_id,tanggal),
+ FOREIGN KEY (guru_id) REFERENCES guru(id) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS tamu (
+ id INT AUTO_INCREMENT PRIMARY KEY, tanggal DATE NOT NULL, nama VARCHAR(120) NOT NULL,
+ instansi VARCHAR(120), tujuan VARCHAR(255) NOT NULL, bertemu VARCHAR(120),
+ dicatat_oleh INT NULL,
+ FOREIGN KEY (dicatat_oleh) REFERENCES user(id) ON DELETE SET NULL
+);
+CREATE TABLE IF NOT EXISTS laporan_piket (
+ id INT AUTO_INCREMENT PRIMARY KEY, guru_id INT NOT NULL, tanggal DATE NOT NULL,
+ kegiatan TEXT NOT NULL, kejadian TEXT, tindak_lanjut TEXT,
+ FOREIGN KEY (guru_id) REFERENCES guru(id) ON DELETE CASCADE
+);

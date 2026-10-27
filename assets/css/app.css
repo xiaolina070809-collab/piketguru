@@ -1,0 +1,30 @@
+
+:root{--brand:#2563eb;--ink:#17233b;--muted:#64748b}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);background:#f3f7ff}
+.content-wrapper{background:linear-gradient(180deg,#f0f6ff,#f8fafc)!important}
+.main-header{border:0!important;box-shadow:0 3px 24px rgba(27,55,107,.08)}
+.navbar-brand{letter-spacing:-.5px}
+.navbar-brand .brand-mark{display:inline-grid;place-items:center;width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;margin-right:8px}
+.navbar-nav .nav-link{font-weight:600;color:#4a5c77!important}
+.navbar-nav .nav-link:hover{color:#2563eb!important}
+.card{border:0;border-radius:18px;box-shadow:0 7px 25px rgba(31,57,96,.07)}
+.card-header{background:#fff;border-radius:18px 18px 0 0!important;border-bottom:1px solid #eef2f8}
+.btn{border-radius:10px;font-weight:600;padding:.5rem .85rem}
+.form-control{border-radius:10px;border-color:#dce4f0;min-height:42px}
+.form-control:focus{border-color:#93b4ff;box-shadow:0 0 0 .18rem #2563eb1c}
+.table thead th{background:#f1f5fb;border-bottom:0;color:#334155;white-space:nowrap}
+.table td{vertical-align:middle}
+.hero{padding:70px 32px;border-radius:26px;background:linear-gradient(120deg,#142e70,#2559bb 60%,#7159cb);color:white;position:relative;overflow:hidden}
+.hero:after{content:'';position:absolute;right:-70px;top:-100px;width:350px;height:350px;border-radius:50%;border:75px solid #ffffff15}
+.hero h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800;letter-spacing:-1.3px}
+.hero p{max-width:660px;color:#e3ecff;font-size:1.1rem}
+.hero .btn-light{color:#1d4fa8}
+.feature-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:#eaf1ff;color:#285fe1;font-size:1.4rem}
+.feature-card{padding:22px;height:100%}
+.feature-card h5{font-weight:700;margin-top:16px}
+.stat-card{padding:22px;border-left:5px solid #3b82f6}
+.stat-card .value{font-size:2rem;font-weight:800}
+.stat-card .label{color:var(--muted)}
+.footer-note{color:#64748b}
+@media(max-width:767px){.hero{padding:45px 22px}.main-header .container-fluid{padding-left:15px;padding-right:15px}}
+@media print{.main-header,.main-footer,.btn,form,.no-print{display:none!important}.content-wrapper{background:white!important}.card{box-shadow:none}}
